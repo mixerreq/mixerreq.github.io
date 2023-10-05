@@ -9,7 +9,7 @@
     {   "title":"Walking on the clouds",
         "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/eM-Walking-on-the-clouds_SC.jpg",
         "songLink":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
-        "producer":"em",
+        "producer":"eM",
         "hmTime":"26:53"
     },
     {   "title":"Rain for Australia",
@@ -25,28 +25,35 @@
         "hmTime":"26:36"
     },
     {   "title":"Awaken from Dreams",
-        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
+        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2019/10/Awaken_from_Dreams-1.jpg",
         "songLink":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
-        "producer":"Beejal Coulson and eM",
+        "producer":"eM",
         "hmTime":"01:21:08"
     },
-    {   "title":"Love Peace and Light",
-        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
+    {   "title":"Journey Into the Forest",
+        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2019/10/Journey_into_the_forrest-1.jpg",
         "songLink":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
-        "producer":"Beejal Coulson and eM",
-        "hmTime":"07:42"
+        "producer":"eM",
+        "hmTime":"01:14:11"
     },
-    {   "title":"Love Peace and Light",
-        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
+    {   "title":"Milky Way",
+        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2019/11/milky_way_2021.jpg",
         "songLink":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
-        "producer":"Beejal Coulson and eM",
-        "hmTime":"07:42"
+        "producer":"eM",
+        "hmTime":"51:31"
     },
-    {   "title":"Love Peace and Light",
-        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
+    {   "title":"Everything magically works out for me",
+        "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2019/01/EMWOFM_subliminal.jpg",
         "songLink":"https://www.coherentbrainmusic.com/wp-content/uploads/2020/05/Love-peace-light_Ukraine.png",
-        "producer":"Beejal Coulson and eM",
-        "hmTime":"07:42"
+        "producer":"eM",
+        "hmTime":"01:12:05"
     },
+    {
+      "title":"4 in One",
+      "img":"https://www.coherentbrainmusic.com/wp-content/uploads/2019/11/all_in_one_new_.jpg",
+      "songLink":"e",
+      "producer":"eM",
+      "hmTime":"03:53:26"
+    }
   ]
 }

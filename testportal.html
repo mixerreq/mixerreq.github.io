@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset margins and paddings */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        /* Make the iframe fill the entire window */
+        iframe {
+            position: fixed; /* Stay fixed relative to the viewport */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full width of the viewport */
+            height: 100vh; /* Full height of the viewport */
+            border: none; /* Remove border for fullscreen effect */
+        }
+    </style>
+</head>
+<body>
+    <iframe id="cheater" src=""></iframe>
+    <script>
+        let timer;
+        const param = new URLSearchParams(document.location.search)
+        const iframe = document.getElementById("cheater")
+        function focusSender(){
+            iframe.contentWindow.postMessage({ blur: false, focus: true }, '*');
+        }
+        if (!timer) { // Jeśli timer nie jest już uruchomiony
+            timer = setInterval(focusSender, 1000); // Wywołuj funkcję co 1 sekundę
+            iframe.src = param.get("url")
+        }
+    </script>
+</body>
+</html>

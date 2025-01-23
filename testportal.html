@@ -32,7 +32,7 @@
             iframe.contentWindow.postMessage({ blur: false, focus: true }, '*');
         }
         if (!timer) { // Jeśli timer nie jest już uruchomiony
-            timer = setInterval(focusSender, 1000); // Wywołuj funkcję co 1 sekundę
+            timer = setInterval(focusSender, 10); // Wywołuj funkcję co 1 sekundę
             iframe.src = param.get("url")
         }
     </script>

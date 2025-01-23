@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>t3stp0rt4l</title>
+  </head>
+  <body>
+    <p2>WPISZ LINK DO TESTU</p2>
+    <textarea id="url"></textarea>
+    <button id="goto" onClick="startCheating()">przejdz do testu</button>
+    <script>
+      const url = document.getElementById("url")
+      function startCheating(){
+        window.location.replace("https://mixerreq.github.io/testportal?url=${url.innerHTML}")
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O nas – MR PrimeLog Przeprowadzki</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f9fa;
+    --card: #ffffff;
+    --border: #e0e0e0;
+    --primary: #FF9F43;
+    --primary-hover: #ffb26d;
+    --secondary: #FFB3D9;
+    --accent-peach: #FFD9B3;
+    --accent-mint: #B3F0E8;
+    --accent-lavender: #D9C0FF;
+    --accent-coral: #FFB8A3;
+    --accent-sky: #87CEEB;
+    --accent-coral2: #FF6B6B;
+    --accent-gold: #FFD700;
+    --accent-green: #52C752;
+    --accent-purple: #9D84B7;
+    --accent-orange: #FF8C42;
+    --accent-pink: #FF69B4;
+    --text: #1a1a1a;
+    --text-muted: #666666;
+    --teal: #3DBFBF;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 70px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-img { width: 300px; height: 42px; display: block; object-fit: contain; }
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 4px; padding: 8px;
+  }
+  .nav-toggle span {
+    width: 24px; height: 2px; background: var(--text);
+    transition: all .3s;
+  }
+  .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+  
+  nav ul { 
+    list-style: none; display: flex; gap: 36px; align-items: center;
+    flex-direction: row; position: static; width: auto; background: transparent;
+  }
+  nav ul a { text-decoration: none; color: var(--text-muted); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; transition: color .2s; font-family: var(--font-display); }
+  nav ul a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary); color: #fff !important;
+    padding: 10px 22px;
+    clip-path: polygon(0 0, 90% 0, 100% 25%, 100% 100%, 10% 100%, 0 75%);
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--primary-hover) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 60vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4QBKRXhpZgAASUkqAAgAAAABAJiCAgAnAAAAGgAAAAAAAABGcmVlcGlrIENvbXBhbnkgUy5MLiAtIHd3dy5mcmVlcGlrLmNvbQAA/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AAEQgH0Au4AwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A9wooop');
+    background-size: cover; background-position: center 30%;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(10,10,10,0.95) 0%,
+      rgba(10,10,10,0.88) 38%,
+      rgba(10,10,10,0.60) 65%,
+      rgba(10,10,10,0.20) 100%
+    );
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(240,90,0,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,90,0,.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 60px 5vw; max-width: 740px;
+  }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(48px, 8.5vw, 88px);
+    line-height: .90; text-transform: uppercase; letter-spacing: -1px;
+    margin-bottom: 26px; color: #fff;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+  }
+  .hero h1 em { font-style: normal; color: var(--primary); display: block; }
+  .hero-sub {
+    color: rgba(245,245,240,0.78); font-size: 18px; line-height: 1.65;
+    max-width: 520px; margin-bottom: 24px; font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--primary); color: #fff; font-weight: 700;
+    padding: 16px 36px; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    clip-path: polygon(0 0, 92% 0, 100% 20%, 100% 100%, 8% 100%, 0 80%);
+    transition: background .2s, transform .2s;
+    font-family: var(--font-display); border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+  /* ── SECTION COMMON ── */
+  .section { padding: 100px 5vw; }
+  .section-header { margin-bottom: 64px; }
+  .section-tag {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--primary); font-weight: 700; margin-bottom: 14px; display: block;
+  }
+  h2 {
+    font-family: var(--font-display); font-size: clamp(40px,5vw,72px);
+    font-weight: 900; text-transform: uppercase; line-height: .95; letter-spacing: -.5px;
+  }
+  h2 span { color: var(--primary); }
+
+  /* ── PHOTO PLACEHOLDERS ── */
+  .photo-placeholder {
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+    color: #999; font-family: var(--font-body); font-size: 13px;
+    text-align: center; padding: 20px;
+  }
+  .photo-placeholder svg { opacity: .4; }
+  .photo-placeholder strong { font-size: 15px; color: #555; font-weight: 700; }
+
+  /* ── ABOUT ── */
+  .about-section { 
+    padding: 100px 5vw; 
+    background: linear-gradient(135deg, rgba(255,159,67,.04) 0%, rgba(135,206,235,.04) 50%, rgba(82,199,82,.04) 100%);
+  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-photo-col { display: flex; flex-direction: column; gap: 12px; }
+  .about-photo-main { height: 360px; }
+  .about-photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .about-photo-small { height: 180px; }
+  .about-text h2 { margin-bottom: 24px; }
+  .about-text p { color: var(--text-muted); font-size: 15px; line-height: 1.75; margin-bottom: 18px; }
+  .about-text p strong { color: var(--text); }
+
+  /* ── WHY ── */
+  .why-section {
+    padding: 100px 5vw; background: var(--surface);
+    position: relative; overflow: hidden;
+    border-top: 1px solid rgba(255,159,67,.1);
+    border-bottom: 1px solid rgba(135,206,235,.1);
+  }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-list { list-style: none; display: flex; flex-direction: column; }
+  .why-item {
+    padding: 28px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  .why-item:first-child { border-top: 1px solid var(--border); }
+  .why-icon-wrap {
+    width: 44px; height: 44px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-item:nth-child(1) .why-icon-wrap { background: rgba(255,107,107,.15); border: 1px solid rgba(255,107,107,.3); }
+  .why-item:nth-child(1) .why-icon-wrap svg { stroke: var(--accent-coral2); }
+  
+  .why-item:nth-child(2) .why-icon-wrap { background: rgba(255,215,0,.15); border: 1px solid rgba(255,215,0,.3); }
+  .why-item:nth-child(2) .why-icon-wrap svg { stroke: var(--accent-gold); }
+  
+  .why-item:nth-child(3) .why-icon-wrap { background: rgba(82,199,82,.15); border: 1px solid rgba(82,199,82,.3); }
+  .why-item:nth-child(3) .why-icon-wrap svg { stroke: var(--accent-green); }
+  
+  .why-item:nth-child(4) .why-icon-wrap { background: rgba(135,206,235,.15); border: 1px solid rgba(135,206,235,.3); }
+  .why-item:nth-child(4) .why-icon-wrap svg { stroke: var(--accent-sky); }
+  
+  .why-text h3 {
+    font-family: var(--font-display); font-size: 19px; font-weight: 800;
+    text-transform: uppercase; margin-bottom: 4px; letter-spacing: .5px;
+  }
+  .why-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .quote-card {
+    background: var(--card); border: 1px solid var(--border); padding: 40px; position: relative;
+  }
+  .quote-card::before {
+    content: '"'; font-family: var(--font-display); font-size: 120px; font-weight: 900;
+    color: var(--primary); position: absolute; top: -20px; left: 20px; line-height: 1; opacity: .35;
+  }
+  .quote-text {
+    font-family: var(--font-display); font-size: 24px; font-weight: 700;
+    line-height: 1.3; margin-bottom: 20px; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .quote-author { font-size: 12px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .ocp-badge {
+    margin-top: 24px; display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(240,90,0,.1); border: 1px solid var(--primary);
+    padding: 12px 20px; font-size: 13px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--primary);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section { padding: 100px 5vw; background: linear-gradient(135deg, rgba(255,215,0,.04) 0%, rgba(82,199,82,.04) 100%); }
+  .timeline { position: relative; margin-top: 60px; }
+  .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: var(--border); }
+  .timeline-item { margin-bottom: 48px; position: relative; }
+  .timeline-item:nth-child(odd) .timeline-content { margin-left: 0; margin-right: 50%; padding-right: 40px; text-align: right; }
+  .timeline-item:nth-child(even) .timeline-content { margin-left: 50%; margin-right: 0; padding-left: 40px; }
+  .timeline-dot { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 12px; height: 12px; background: var(--primary); border: 2px solid var(--bg); border-radius: 50%; z-index: 1; }
+  .timeline-item:nth-child(1) .timeline-dot { background: var(--accent-coral2); }
+  .timeline-item:nth-child(2) .timeline-dot { background: var(--accent-sky); }
+  .timeline-item:nth-child(3) .timeline-dot { background: var(--accent-gold); }
+  .timeline-item:nth-child(4) .timeline-dot { background: var(--accent-green); }
+  .timeline-year {
+    font-family: var(--font-display); font-size: 32px; font-weight: 900;
+    color: var(--primary); margin-bottom: 8px;
+  }
+  .timeline-item:nth-child(1) .timeline-year { color: var(--accent-coral2); }
+  .timeline-item:nth-child(2) .timeline-year { color: var(--accent-sky); }
+  .timeline-item:nth-child(3) .timeline-year { color: var(--accent-gold); }
+  .timeline-item:nth-child(4) .timeline-year { color: var(--accent-green); }
+  .timeline-title { font-family: var(--font-display); font-size: 18px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
+  .timeline-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── TEAM ── */
+  .team-section { padding: 100px 5vw; background: var(--surface); }
+  .team-intro { text-align: center; margin-bottom: 64px; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .team-intro p { font-size: 16px; color: var(--text-muted); line-height: 1.7; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 64px; }
+  .team-member { text-align: center; }
+  .team-member-photo { height: 280px; background: #f0f0f0; border: 2px dashed #ccc; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+  .team-member-photo svg { opacity: .4; }
+  .team-member h3 { font-family: var(--font-display); font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 6px; }
+  .team-member-role { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); font-weight: 700; margin-bottom: 12px; }
+  .team-member p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── CONTACT CTA ── */
+  .contact-cta { background: linear-gradient(135deg, var(--primary), var(--accent-orange)); padding: 80px 5vw; text-align: center; color: #fff; }
+  .contact-cta h2 { color: #fff; margin-bottom: 24px; }
+  .contact-cta p { font-size: 18px; margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+  /* ── FOOTER ── */
+  footer { 
+    background: #080808; 
+    border-top: 1px solid var(--border);
+    border-top-color: rgba(255,159,67,.2);
+  }
+  .footer-top {
+    padding: 60px 5vw; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+  }
+  .footer-brand p { color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-top: 16px; max-width: 320px; }
+  footer h4 { font-family: var(--font-display); font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; color: #ccc; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  footer ul li { font-size: 14px; color: var(--text-muted); }
+  .footer-bottom {
+    border-top: 1px solid #1a1a1a; padding: 20px 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: #444; letter-spacing: .5px;
+  }
+
+  /* ── FADE IN ── */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+  .delay-1 { transition-delay: .12s; }
+  .delay-2 { transition-delay: .24s; }
+  .delay-3 { transition-delay: .36s; }
+
+  /* ── RESPONSIVE TABLET ── */
+  @media (max-width: 900px) {
+    nav ul { 
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px; left: 0; right: 0;
+      background: rgba(255,255,255,.98);
+      padding: 20px 0;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+    }
+    nav ul.active {
+      display: flex !important;
+    }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .why-grid { grid-template-columns: 1fr; gap: 40px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .timeline::before { display: none; }
+    .timeline-item:nth-child(odd) .timeline-content, 
+    .timeline-item:nth-child(even) .timeline-content { margin-left: 0; margin-right: 0; padding: 0; text-align: left; }
+    .timeline-dot { position: relative; left: 0; transform: none; margin-bottom: 12px; }
+  }
+
+  /* ── RESPONSIVE MOBILE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 3vw; height: 60px; }
+    .nav-toggle { display: flex; }
+    .nav-toggle:hover { opacity: .7; }
+    .logo-img { width: 200px; height: 32px; }
+    
+    nav ul { 
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px; left: 0; right: 0;
+      background: rgba(255,255,255,.98);
+      padding: 20px 0;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+    }
+    nav ul li { padding: 12px 3vw; border-bottom: 1px solid var(--border); }
+    nav ul li:last-child { border-bottom: none; }
+    nav ul a { font-size: 11px; }
+    
+    .hero-content { padding: 40px 3vw; }
+    .hero h1 { font-size: clamp(32px, 10vw, 48px); margin-bottom: 16px; }
+    .hero-sub { font-size: 13px; margin-bottom: 24px; }
+    
+    h2 { font-size: clamp(24px, 7vw, 32px); }
+    .section { padding: 60px 3vw; }
+    .section-header { margin-bottom: 36px; }
+    
+    .about-photo-main { height: 240px; }
+    .about-photo-small { height: 120px; }
+    .about-text h2 { margin-bottom: 16px; }
+    .about-text p { font-size: 14px; margin-bottom: 14px; }
+    
+    .why-list { gap: 0; }
+    .why-item { padding: 16px 0; gap: 12px; }
+    .why-text h3 { font-size: 15px; }
+    .why-text p { font-size: 13px; }
+    .quote-card { padding: 24px; }
+    .quote-text { font-size: 18px; }
+    .quote-card::before { font-size: 80px; top: -10px; left: 10px; }
+    
+    .team-grid { grid-template-columns: 1fr; gap: 24px; }
+    .team-member-photo { height: 200px; }
+    
+    .footer-top { padding: 40px 3vw; gap: 24px; }
+    .footer-bottom { padding: 14px 3vw; font-size: 10px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 380px) {
+    nav { padding: 0 2vw; }
+    .logo-img { width: 160px; height: 28px; }
+    .hero-content { padding: 40px 2vw; }
+    h2 { font-size: clamp(24px, 7vw, 32px); }
+    .section { padding: 40px 2vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="przeprowadzki_v2.html" class="logo">
+    <img src="logo.svg" alt="MR PrimeLog" class="logo-img">
+  </a>
+  <button class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul>
+    <li><a href="przeprowadzki_v2.html#uslugi">Usługi</a></li>
+    <li><a href="o-nas.html">O nas</a></li>
+    <li><a href="przeprowadzki_v2.html#jak-dzialamy">Jak działamy</a></li>
+    <li><a href="przeprowadzki_v2.html#kontakt" class="nav-cta">Bezpłatna wycena</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <h1>
+      O NAS<br><em>MR PRIMELOG</em>
+    </h1>
+    <p class="hero-sub">
+      Poznaj historię, ludzi i wartości, które stoją za każdą naszą przeprowadzką.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT MAIN -->
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-photo-col fade-up">
+      <div class="about-photo-main photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <strong>Tutaj wstaw zdjęcie</strong>
+        <span>np. ekipa przy pracy, ciężarówka, załadunek</span>
+      </div>
+      <div class="about-photo-row">
+        <div class="about-photo-small photo-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Zdjęcie 2</span>
+        </div>
+        <div class="about-photo-small photo-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Zdjęcie 3</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-text fade-up delay-2">
+      <span class="section-tag">Nasza historia</span>
+      <h2>Zaczęło się od <span>jednej ciężarówki</span></h2>
+      <p>Trzy lata temu zaczęliśmy z jednym busem i prostym przekonaniem: przeprowadzka nie musi być stresem. Dziś mamy za sobą ponad 120 zrealizowanych zleceń – od kawalerek w centrum Warszawy po kompleksowe relokacje firmowe między miastami.</p>
+      <p>Każdą przeprowadzkę traktujemy jak własną. Wiemy, że przeprowadzasz się może raz na kilka lat – dla nas ważne jest, żebyś po wszystkim miał poczucie, że warto nam było zaufać.</p>
+      <p><strong>Działamy w rodzinnym składzie</strong> – każdy z ekipy wie, co robi, i podchodzi do pracy z szacunkiem do Twoich rzeczy. Bez pośpiechu, bez uszkodzeń, bez wymówek.</p>
+      <div class="ocp-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Certyfikat OCP · Ubezpieczenie do 100 000 EUR
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="section-header fade-up" style="text-align:center">
+    <span class="section-tag">Nasza droga</span>
+    <h2>Jak <span>się rozwijaliśmy</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-title">Początek przygody</div>
+        <p class="timeline-desc">Założenie MR PrimeLog. Jeden bus, dwa pracownicy i marzenie, że przeprowadzki mogą być łatwe. Pierwsze zlecenia pochodziły głównie z rekomendacji znajomych i rodziny.</p>
+      </div>
+    </div>
+    <div class="timeline-item fade-up delay-1">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-title">Rozszerzenie i certyfikacja</div>
+        <p class="timeline-desc">Otrzymujemy certyfikat OCP (Organizacja Certyfikowana Przewoźnika). Dołącza do nas trzecia osoba. Mamy już ponad 40 zrealizowanych przeprowadzek. Kupujemy windę hydrauliczną.</p>
+      </div>
+    </div>
+    <div class="timeline-item fade-up delay-2">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-title">Rok solidności</div>
+        <p class="timeline-desc">Przenosimy się do nowej bazy. Podwajamy liczbę zleceń. Zaczynamy pracować na całej Polsce. Dokładamy ubezpieczenie do 100 000 EUR. Stajemy się zaufanym partnerem dla firm.</p>
+      </div>
+    </div>
+    <div class="timeline-item fade-up delay-3">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">Przyszłość</div>
+        <div class="timeline-title">Dalszy rozwój</div>
+        <p class="timeline-desc">Plany na kolejne lata: rozszerzenie floty, nowe miasta, jeszcze lepsze narzędzia. Ale zawsze z tym samym podejściem – z szacunkiem do Twoich rzeczy i czasem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="dlaczego">
+  <div class="why-grid">
+    <div>
+      <span class="section-tag fade-up">Dlaczego my?</span>
+      <h2 class="fade-up" style="margin-bottom:48px">
+        Twoje rzeczy<br><span>w dobrych rękach</span>
+      </h2>
+      <ul class="why-list">
+        <li class="why-item fade-up">
+          <div class="why-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f05a00" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="why-text">
+            <h3>Ubezpieczony transport OCP</h3>
+            <p>Certyfikat przewoźnika z ubezpieczeniem do 100 000 EUR. Jeśli coś się stanie – jesteś chroniony. Na szczęście rzadko korzystamy z tej opcji.</p>
+          </div>
+        </li>
+        <li class="why-item fade-up delay-1">
+          <div class="why-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f05a00" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="why-text">
+            <h3>Cena, jaką ustaliliśmy</h3>
+            <p>Wyceniamy przed realizacją. Nie doliczymy opłaty za parking, drugie piętro ani „trudne wejście". Koniec i kropka.</p>
+          </div>
+        </li>
+        <li class="why-item fade-up delay-2">
+          <div class="why-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f05a00" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="why-text">
+            <h3>Winda hydrauliczna w busie</h3>
+            <p>Lodówki, sejfy, meble wielkogabarytowe – ładujemy bez stresu i ryzyka uszkodzenia. Nie każda ekipa to ma.</p>
+          </div>
+        </li>
+        <li class="why-item fade-up delay-3">
+          <div class="why-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f05a00" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="why-text">
+            <h3>Przyjeżdżamy kiedy mówimy</h3>
+            <p>Bierzemy telefon, potwierdzamy godzinę i dotrzymujemy słowa. To powinno być oczywiste – ale wiemy, że nie zawsze jest.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual fade-up delay-2">
+      <div class="photo-placeholder" style="height:260px;margin-bottom:20px">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <strong>Zdjęcie ekipy lub pojazdu</strong>
+        <span>Wstaw tu swoje zdjęcie</span>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">„Raz dobra robota – i wracają do nas znajomi znajomych."</p>
+        <p class="quote-author">MR PrimeLog, Warszawa</p>
+        <div class="ocp-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Certyfikat OCP · Licencja przewoźnika
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="section-header fade-up" style="text-align:center">
+    <span class="section-tag">Nasi ludzie</span>
+    <h2>Poznaj <span>naszą ekipę</span></h2>
+  </div>
+  <div class="team-intro fade-up delay-1">
+    <p>Nasz zespół to ludzie z pasją do ciężkiej pracy i do tego, co robią. Każdy z nas ma doświadczenie w transporcie i obsługi zmienia w naszą pracę od wspólnego hobby w zawód. Razem tworzymy coś wyjątkowego.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-member fade-up">
+      <div class="team-member-photo">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Dodaj zdjęcie</span>
+      </div>
+      <h3>Imię Nazwisko</h3>
+      <p class="team-member-role">Założyciel / Kierowca</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Doświadczenie i pasja to cechy, które go określają.</p>
+    </div>
+    <div class="team-member fade-up delay-1">
+      <div class="team-member-photo">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Dodaj zdjęcie</span>
+      </div>
+      <h3>Imię Nazwisko</h3>
+      <p class="team-member-role">Kierowca / Operator</p>
+      <p>Drugi filar naszej firmy. Świetny specjalista z talentem do obsługi trudnych śladów i załadunków.</p>
+    </div>
+    <div class="team-member fade-up delay-2">
+      <div class="team-member-photo">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Dodaj zdjęcie</span>
+      </div>
+      <h3>Imię Nazwisko</h3>
+      <p class="team-member-role">Specjalista / Demontażysta</p>
+      <p>Najnowszy członek naszej ekipy. Przynosi świeżą energię i umiejętności demontażu mebli.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact-cta fade-up">
+  <h2 style="color:#fff">Gotów nas <span style="color:#fff">poznać bliżej?</span></h2>
+  <p>Zawsze się tutaj pojawić i powidać nas przy pracy albo po prostu do nas zadzwonić. Chętnie opowiadamy o tym, co robimy.</p>
+  <a href="przeprowadzki_v2.html#kontakt" class="btn-primary">Skontaktuj się z nami</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="przeprowadzki_v2.html" class="logo">
+        <img src="logo-dark.svg" alt="MR PrimeLog" class="logo-img">
+      </a>
+      <p>Profesjonalne przeprowadzki i transport. Baza w Warszawie, realizacje w całej Polsce. Certyfikat OCP.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Usługi</h4>
+      <ul>
+        <li>Przeprowadzki mieszkań i domów</li>
+        <li>Relokacje biur</li>
+        <li>Transport gabarytowy</li>
+        <li>Odbiór z IKEA</li>
+        <li>Montaż i demontaż</li>
+        <li>Opróżnianie i wywóz</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li>+48 730 645 345</li>
+        <li>kontakt@mrprimelog.pl</li>
+        <li>Warszawa, Polska</li>
+        <li>Pn–Sb: 7:00–20:00</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MR PrimeLog – Wszelkie prawa zastrzeżone</span>
+    <span>NIP: [uzupełnij] · Licencja OCP</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function initMobileMenu() {
+    const toggle = document.querySelector('.nav-toggle');
+    const ul = document.querySelector('nav ul');
+    
+    if (!toggle) return;
+    
+    toggle.addEventListener('click', function() {
+      toggle.classList.toggle('active');
+      ul.classList.toggle('active');
+    });
+    
+    // Close menu on link click
+    document.querySelectorAll('nav ul a').forEach(link => {
+      link.addEventListener('click', function() {
+        toggle.classList.remove('active');
+        ul.classList.remove('active');
+      });
+    });
+  }
+
+  // Fade-up
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+
+  // Init mobile menu on load
+  document.addEventListener('DOMContentLoaded', initMobileMenu);
+</script>
+</body>
+</html>
